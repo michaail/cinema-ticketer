@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CinemaTicketer.Shared.Models
 {
-    class Reservation
+    public class Reservation
     {
         [Key]
         public int Id { get; set; }

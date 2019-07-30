@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CinemaTicketer.Shared.Models
 {
-    class Movie
+    public class Movie
     {
         [Key]
         public int Id { get; set; }
@@ -17,7 +17,7 @@ namespace CinemaTicketer.Shared.Models
         public int Duration { get; set; }
         public string Description { get; set; }
         public decimal Rating { get; set; }
-
+        public ICollection<Reservation> Reservations { get; set; }
         public ICollection<Screening> Screenings { get; set; }
         
     }
