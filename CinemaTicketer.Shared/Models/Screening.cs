@@ -12,7 +12,12 @@ namespace CinemaTicketer.Shared.Models
         public Movie Movie { get; set; }
         public DateTimeOffset Date { get; set; }
 
+        public int Rows => Hall.Rows;
+        public int Collumns => Hall.Collumns;
+        public int Capacity => Rows * Collumns;
         public ICollection<Seat> ReservedSeats { get; set; }
+
+        public bool SoldOut => ReservedSeats.Count >= Capacity;
 
     }
 }
