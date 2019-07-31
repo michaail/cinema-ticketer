@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 
 namespace CinemaTicketer.Shared.Models
@@ -15,9 +16,9 @@ namespace CinemaTicketer.Shared.Models
         public int Rows => Hall.Rows;
         public int Collumns => Hall.Collumns;
         public int Capacity => Rows * Collumns;
-        public ICollection<Seat> ReservedSeats { get; set; }
+        public ICollection<Reservation> Reservations { get; set; }
 
-        public bool SoldOut => ReservedSeats.Count >= Capacity;
+        public bool SoldOut => Reservations.Sum(r => r.Seats) >= Capacity;
 
     }
 }

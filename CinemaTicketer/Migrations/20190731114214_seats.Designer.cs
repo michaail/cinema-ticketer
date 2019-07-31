@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CinemaTicketer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190730213348_newModels")]
-    partial class newModels
+    [Migration("20190731114214_seats")]
+    partial class seats
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,15 +47,11 @@ namespace CinemaTicketer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("MovieId");
-
                     b.Property<int?>("ScreeningId");
 
                     b.Property<int?>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
 
                     b.HasIndex("ScreeningId");
 
@@ -81,6 +77,28 @@ namespace CinemaTicketer.Migrations
                     b.ToTable("Screenings");
                 });
 
+            modelBuilder.Entity("CinemaTicketer.Shared.Models.Seat", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Column");
+
+                    b.Property<int?>("ReservationId");
+
+                    b.Property<int>("Row");
+
+                    b.Property<int?>("ScreeningId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReservationId");
+
+                    b.HasIndex("ScreeningId");
+
+                    b.ToTable("Seats");
+                });
+
             modelBuilder.Entity("CinemaTicketer.Shared.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -93,15 +111,11 @@ namespace CinemaTicketer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("CinemaTicketer.Shared.Models.Reservation", b =>
                 {
-                    b.HasOne("CinemaTicketer.Shared.Models.Movie")
-                        .WithMany("Reservations")
-                        .HasForeignKey("MovieId");
-
                     b.HasOne("CinemaTicketer.Shared.Models.Screening", "Screening")
                         .WithMany()
                         .HasForeignKey("ScreeningId");
@@ -114,8 +128,19 @@ namespace CinemaTicketer.Migrations
             modelBuilder.Entity("CinemaTicketer.Shared.Models.Screening", b =>
                 {
                     b.HasOne("CinemaTicketer.Shared.Models.Movie", "Movie")
-                        .WithMany("Screenings")
+                        .WithMany()
                         .HasForeignKey("MovieId");
+                });
+
+            modelBuilder.Entity("CinemaTicketer.Shared.Models.Seat", b =>
+                {
+                    b.HasOne("CinemaTicketer.Shared.Models.Reservation")
+                        .WithMany("ReservedSeats")
+                        .HasForeignKey("ReservationId");
+
+                    b.HasOne("CinemaTicketer.Shared.Models.Screening")
+                        .WithMany("ReservedSeats")
+                        .HasForeignKey("ScreeningId");
                 });
 #pragma warning restore 612, 618
         }

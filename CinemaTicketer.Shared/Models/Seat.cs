@@ -6,13 +6,17 @@ using System.Text;
 
 namespace CinemaTicketer.Shared.Models
 {
-    [NotMapped]
     public class Seat
     {
-        [NotMapped]
+        [Key]
+        public Guid Id { get; set; }
+
         public int Row { get; set; }
-        [NotMapped]
         public int Column { get; set; }
 
+        public ICollection<SeatReservation> SeatReservations { get; set; }
+        public ICollection<Screening> Screenings { get; set; }
+
+      
     }
 }

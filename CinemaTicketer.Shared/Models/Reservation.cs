@@ -14,6 +14,8 @@ namespace CinemaTicketer.Shared.Models
         //public int MovieId { get; set; }
         public Screening Screening { get; set; }
 
-        public ICollection<Seat> ReservedSeats { get; set; }
+        public int Seats { get; set; }
+        public ICollection<SeatReservation> SeatReservations { get; set; }
+        
     }
 }

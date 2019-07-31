@@ -14,9 +14,18 @@ namespace CinemaTicketer.Data
         {
         }
 
+        
+
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
         public DbSet<Screening> Screenings { get; set; }
-        //public DbSet<User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Seat> Seats { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SeatReservation>()
+                .HasKey(t => new { t.ReservationId, t.SeatId });
+        }
     }
 }

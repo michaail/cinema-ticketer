@@ -4,14 +4,16 @@ using CinemaTicketer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CinemaTicketer.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190731113958_models")]
+    partial class models
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,8 +49,6 @@ namespace CinemaTicketer.Migrations
 
                     b.Property<int?>("ScreeningId");
 
-                    b.Property<int>("Seats");
-
                     b.Property<int?>("UserId");
 
                     b.HasKey("Id");
@@ -70,44 +70,11 @@ namespace CinemaTicketer.Migrations
 
                     b.Property<int?>("MovieId");
 
-                    b.Property<Guid?>("SeatId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("MovieId");
 
-                    b.HasIndex("SeatId");
-
                     b.ToTable("Screenings");
-                });
-
-            modelBuilder.Entity("CinemaTicketer.Shared.Models.Seat", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Column");
-
-                    b.Property<int>("Row");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Seats");
-                });
-
-            modelBuilder.Entity("CinemaTicketer.Shared.Models.SeatReservation", b =>
-                {
-                    b.Property<int>("ReservationId");
-
-                    b.Property<int>("SeatId");
-
-                    b.Property<Guid?>("SeatId1");
-
-                    b.HasKey("ReservationId", "SeatId");
-
-                    b.HasIndex("SeatId1");
-
-                    b.ToTable("SeatReservation");
                 });
 
             modelBuilder.Entity("CinemaTicketer.Shared.Models.User", b =>
@@ -128,7 +95,7 @@ namespace CinemaTicketer.Migrations
             modelBuilder.Entity("CinemaTicketer.Shared.Models.Reservation", b =>
                 {
                     b.HasOne("CinemaTicketer.Shared.Models.Screening", "Screening")
-                        .WithMany("Reservations")
+                        .WithMany()
                         .HasForeignKey("ScreeningId");
 
                     b.HasOne("CinemaTicketer.Shared.Models.User", "User")
@@ -141,22 +108,6 @@ namespace CinemaTicketer.Migrations
                     b.HasOne("CinemaTicketer.Shared.Models.Movie", "Movie")
                         .WithMany()
                         .HasForeignKey("MovieId");
-
-                    b.HasOne("CinemaTicketer.Shared.Models.Seat")
-                        .WithMany("Screenings")
-                        .HasForeignKey("SeatId");
-                });
-
-            modelBuilder.Entity("CinemaTicketer.Shared.Models.SeatReservation", b =>
-                {
-                    b.HasOne("CinemaTicketer.Shared.Models.Reservation", "Reservation")
-                        .WithMany("SeatReservations")
-                        .HasForeignKey("ReservationId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CinemaTicketer.Shared.Models.Seat", "Seat")
-                        .WithMany("SeatReservations")
-                        .HasForeignKey("SeatId1");
                 });
 #pragma warning restore 612, 618
         }
