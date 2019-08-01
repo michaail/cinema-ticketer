@@ -16,10 +16,6 @@ namespace CinemaTicketer.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                //services.AddDbContext<CinemaTicketerContext>(options =>
-                //    options.UseSqlServer(
-                //        context.Configuration.GetConnectionString("CinemaTicketerContextConnection")));
-
                 services.AddDefaultIdentity<User>()
                     .AddEntityFrameworkStores<CinemaTicketerContext>();
             });
