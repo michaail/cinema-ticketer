@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CinemaTicketer.Models;
 using CinemaTicketer.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace CinemaTicketer.Controllers
 {
@@ -17,9 +18,9 @@ namespace CinemaTicketer.Controllers
             this._dbContext = dbContext;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            return View(await _dbContext.Movies.ToListAsync());
         }
 
         public IActionResult Movies()

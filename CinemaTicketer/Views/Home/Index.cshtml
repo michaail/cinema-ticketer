@@ -1,8 +1,50 @@
-﻿@{
+﻿@model IEnumerable<CinemaTicketer.Models.Movie>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1>Cinema ticketer</h1>
+</div>
+
+<div class="card-deck">
+    <div class="row">
+        @foreach (var movie in Model)
+        {
+            
+        <div class="col-sm-6 col-md-4 col-lg-3 py-2">
+            <a href="#">
+                <div class="card shadow">
+                    <img class="card-img-top" src="@movie.PosterUrl" alt="@($"{movie.Name} poster")" />
+                    <div class="card-body">
+                        <h5 class="card-title">@movie.Name</h5>
+                        @*<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>*@
+                        <p class="card-text"><small class="text-muted">Movie</small></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        }
+    </div>
+</div>
+
+
+<div class="jumbotron jumbotron-fluid text-center">
+    <h2>Cinema ticketer</h2>
+    <p>Used technologies:</p>
+    <ul style="list-style-type: none; list-style: none; padding-left: 0">
+        <li>ASP.NET MVC core</li>
+        <li>EntityFramework core</li>
+        <li>SQL Server 2017</li>
+        <li>Bootstrap 4</li>
+    </ul>
+    
+    <p>Simple educational project.</p>
+    <p>
+        <a href="https://github.com/michaail/cinema-ticketer">Visit github</a><br>
+        <a href="https://www.linkedin.com/in/micha%C5%82-k%C5%82os-97456114a/">Linkedin</a>
+    </p>
+
 </div>
