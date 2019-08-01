@@ -35,7 +35,7 @@ namespace CinemaTicketer
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<CinemaTicketerContext>(options =>
                 options.UseSqlServer("Data Source=localhost;Integrated Security=True;Database=cinema"));
 
             //services.AddDefaultIdentity<IdentityUser>()
@@ -64,7 +64,7 @@ namespace CinemaTicketer
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            //app.UseAuthentication();
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {

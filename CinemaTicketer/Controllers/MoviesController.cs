@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CinemaTicketer.Data;
-using CinemaTicketer.Shared.Models;
+using CinemaTicketer.Models;
 
 namespace CinemaTicketer.Controllers
 {
     public class MoviesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly CinemaTicketerContext _context;
 
-        public MoviesController(ApplicationDbContext context)
+        public MoviesController(CinemaTicketerContext context)
         {
             _context = context;
         }

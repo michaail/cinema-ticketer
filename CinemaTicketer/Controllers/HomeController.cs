@@ -11,8 +11,8 @@ namespace CinemaTicketer.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _dbContext;
-        public HomeController(ApplicationDbContext dbContext)
+        private readonly CinemaTicketerContext _dbContext;
+        public HomeController(CinemaTicketerContext dbContext)
         {
             this._dbContext = dbContext;
         }
