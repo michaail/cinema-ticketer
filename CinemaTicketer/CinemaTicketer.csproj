@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.cs" />
-    <Compile Remove="Data\Migrations\00000000000000_CreateIdentitySchema.Designer.cs" />
-    <Compile Remove="Data\Migrations\20190730182432_models.cs" />
-    <Compile Remove="Data\Migrations\20190730182432_models.Designer.cs" />
     <Compile Remove="Migrations\20190731113610_seat.cs" />
     <Compile Remove="Migrations\20190731113610_seat.Designer.cs" />
   </ItemGroup>
@@ -25,13 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CinemaTicketer.Shared\CinemaTicketer.Shared.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Data\Migrations\" />
-    <Folder Include="Views\Reservation\" />
-    <Folder Include="Views\Screening\" />
   </ItemGroup>
 
 </Project>

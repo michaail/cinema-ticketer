@@ -19,25 +19,22 @@ namespace CinemaTicketer.Controllers
 
         public IActionResult Index()
         {
-            var movies = _dbContext.Movies.ToList();
-            var screenings = _dbContext.Screenings.ToList();
-
-            return Ok(movies);
+            return View();
         }
 
         public IActionResult Movies()
         {
-            return View();
+            return View("../Movies/Index");
         }
 
         public IActionResult Screenings()
         {
-            return View();
+            return View("../Screenings/Index");
         }
 
         public IActionResult Reservations()
         {
-            return View();
+            return View("../Reservations/Index");
         }
 
         public IActionResult Users()
