@@ -22,7 +22,10 @@ namespace CinemaTicketer.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
-            return View(await _dbContext.Movies.ToListAsync());
+            ViewBag.ComingSoon = await _dbContext.Movies.Where(m => m.NotYetPremiered == true).ToListAsync();
+            
+
+            return View(await _dbContext.Movies.Where(m => m.IsNew == true).ToListAsync());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

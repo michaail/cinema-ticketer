@@ -21,6 +21,11 @@ namespace CinemaTicketer.Models
         public string Cast { get; set; }
 
         public string PosterUrl { get; set; }
+        public DateTimeOffset PremiereDate { get; set; }
+        public bool NotYetPremiered => PremiereDate > DateTimeOffset.Now;
+
+        // Week old is new
+        public bool IsNew => !NotYetPremiered && (DateTimeOffset.Now - PremiereDate).TotalDays <= 7;
         //public ICollection<Reservation> Reservations { get; set; }
         //public ICollection<Screening> Screenings { get; set; }
         

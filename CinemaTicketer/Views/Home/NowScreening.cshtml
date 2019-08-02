@@ -1,0 +1,26 @@
+﻿@model IEnumerable<CinemaTicketer.Models.Movie>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+    <div class="card-deck">
+        <div class="row">
+            @foreach (var movie in Model)
+            {
+
+                <div class="col-sm-6 col-md-4 col-lg-3 py-2">
+                    <a href="#">
+                        <div class="card shadow">
+                            <img class="card-img-top" src="@movie.PosterUrl" alt="@($"{movie.Name} poster")" />
+                            <div class="card-body">
+                                <h5 class="card-title">@movie.Name</h5>
+                                @*<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>*@
+                                <p class="card-text"><small class="text-muted">Movie</small></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            }
+        </div>
+    </div>
