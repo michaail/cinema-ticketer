@@ -54,7 +54,7 @@ namespace CinemaTicketer.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Duration,Description,Rating,Director,Cast,PosterUrl")] Movie movie)
+        public async Task<IActionResult> Create([Bind("Id,Name,Duration,Description,Rating,Director,Cast,PosterUrl,PremiereDate")] Movie movie)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace CinemaTicketer.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Duration,Description,Rating,Director,Cast,PosterUrl")] Movie movie)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Duration,Description,Rating,Director,Cast,PosterUrl,PremiereDate")] Movie movie)
         {
             if (id != movie.Id)
             {
