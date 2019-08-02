@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using CinemaTicketer.Models;
 using CinemaTicketer.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CinemaTicketer.Controllers
 {
@@ -18,29 +19,10 @@ namespace CinemaTicketer.Controllers
             this._dbContext = dbContext;
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             return View(await _dbContext.Movies.ToListAsync());
-        }
-
-        public IActionResult Movies()
-        {
-            return View("../Movies/Index");
-        }
-
-        public IActionResult Screenings()
-        {
-            return View("../Screenings/Index");
-        }
-
-        public IActionResult Reservations()
-        {
-            return View("../Reservations/Index");
-        }
-
-        public IActionResult Users()
-        {
-            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

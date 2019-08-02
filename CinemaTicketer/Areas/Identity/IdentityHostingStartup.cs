@@ -16,7 +16,7 @@ namespace CinemaTicketer.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDefaultIdentity<User>()
+                services.AddDefaultIdentity<User>().AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<CinemaTicketerContext>();
             });
         }
