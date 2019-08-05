@@ -68,10 +68,56 @@
     </dl>
 </div>
 <div>
-    <a asp-controller="Screenings" asp-action="Create" asp-route-id="@Model.Id">Add screenings</a>
-</div>
-
-<div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
     <a asp-action="Index">Back to List</a>
 </div>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Screenings
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Duration)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>*@
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var screening in Model.Screenings)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => screening.Date)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.Duration)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>*@
+                    <td>
+                        <a asp-controller="Screenings" asp-action="Edit" asp-route-id="@screening.Id">Edit</a> |
+                        <a asp-controller="Screenings" asp-action="Delete" asp-route-id="@screening.Id">Delete</a> |
+                        <a asp-controller="Screenings" asp-action="Create" asp-route-id="@Model.Id">Add screening</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-controller="Screenings" asp-action="Create" asp-route-id="@Model.Id">Add screenings</a>
+</div>
+
+

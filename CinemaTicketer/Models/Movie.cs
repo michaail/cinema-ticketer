@@ -27,7 +27,7 @@ namespace CinemaTicketer.Models
         // Week old is new
         public bool IsNew => !NotYetPremiered && (DateTimeOffset.Now - PremiereDate).TotalDays <= 7;
         //public ICollection<Reservation> Reservations { get; set; }
-        //public ICollection<Screening> Screenings { get; set; }
+        public ICollection<Screening> Screenings { get; set; }
         
     }
 }
