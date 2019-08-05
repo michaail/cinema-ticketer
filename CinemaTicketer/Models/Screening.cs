@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 
@@ -10,6 +11,8 @@ namespace CinemaTicketer.Models
     {
         [Key]
         public int Id { get; set; }
+        [ForeignKey("Movie")]
+        public int MovieId { get; set; }
         public Movie Movie { get; set; }
         public DateTimeOffset Date { get; set; }
 
@@ -18,7 +21,7 @@ namespace CinemaTicketer.Models
         public int Capacity => Rows * Collumns;
         public ICollection<Reservation> Reservations { get; set; }
 
-        public bool SoldOut => Reservations.Sum(r => r.Seats) >= Capacity;
+        public bool SoldOut => Reservations?.Sum(r => r.Seats) >= Capacity;
 
     }
 }

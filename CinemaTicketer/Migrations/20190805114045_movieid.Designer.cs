@@ -4,14 +4,16 @@ using CinemaTicketer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CinemaTicketer.Migrations
 {
     [DbContext(typeof(CinemaTicketerContext))]
-    partial class CinemaTicketerContextModelSnapshot : ModelSnapshot
+    [Migration("20190805114045_movieid")]
+    partial class movieid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

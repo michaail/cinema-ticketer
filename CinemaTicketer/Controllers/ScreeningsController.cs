@@ -44,8 +44,9 @@ namespace CinemaTicketer.Controllers
         }
 
         // GET: Screenings/Create
-        public IActionResult Create()
+        public IActionResult Create(int? id)
         {
+            ViewBag.Id = id;
             return View();
         }
 
@@ -54,10 +55,12 @@ namespace CinemaTicketer.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Date")] Screening screening)
+        public async Task<IActionResult> Create([Bind("Date,MovieId")] Screening screening)
         {
             if (ModelState.IsValid)
             {
+                screening.Movie = await _context.Movies.FindAsync(screening.MovieId);
+                screening.Reservations = new List<Reservation>();
                 _context.Add(screening);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
