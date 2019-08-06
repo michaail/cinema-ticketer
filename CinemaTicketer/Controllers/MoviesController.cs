@@ -26,6 +26,33 @@ namespace CinemaTicketer.Controllers
             return View(await _context.Movies.ToListAsync());
         }
 
+        [HttpGet("[controller]/{id}")]
+        public async Task<IActionResult> Screenings(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            // retrieves movie and its upcoming screenings 
+            //var movie = await _context.Movies
+            //    .Include(m => m.Screenings.Where(s => s.Date >= DateTimeOffset.Now))
+            //    .FirstOrDefaultAsync(m => m.Id == id);
+            var movie = await _context.Movies.FindAsync(id);
+            await _context.Entry(movie)
+                .Collection(m => m.Screenings)
+                .Query()
+                .Where(s => (s.Date - DateTimeOffset.Now).TotalMinutes > 10)
+                .ToListAsync();
+
+            if (movie == null)
+            {
+                return NotFound();
+            }
+
+            return View(movie);
+        }
+
         // GET: Movies/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -151,6 +178,8 @@ namespace CinemaTicketer.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+        
 
         private bool MovieExists(int id)
         {
