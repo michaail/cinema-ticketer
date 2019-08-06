@@ -20,9 +20,9 @@ namespace CinemaTicketer.Controllers
         }
 
         // GET: Screenings
-        public async Task<IActionResult> Index(int? movieId)
+        public async Task<IActionResult> Index([FromQuery] int? id)
         {
-            if (movieId != null) return View(await _context.Screenings.Where(s => s.MovieId == movieId).ToListAsync());
+            if (id != null) return View(await _context.Screenings.Where(s => s.MovieId == id).ToListAsync());
             else return View(await _context.Screenings.ToListAsync());
         }
 

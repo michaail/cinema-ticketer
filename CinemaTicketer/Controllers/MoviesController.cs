@@ -19,6 +19,7 @@ namespace CinemaTicketer.Controllers
             _context = context;
         }
 
+
         // GET: Movies
         public async Task<IActionResult> Index()
         {
@@ -33,8 +34,7 @@ namespace CinemaTicketer.Controllers
                 return NotFound();
             }
 
-            //var movie = await _context.Movies
-            //    .FirstOrDefaultAsync(m => m.Id == id);
+            // retrieve movie with corresponding screenings
             var movie = await _context.Movies
                 .Include(m => m.Screenings)
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -59,6 +59,7 @@ namespace CinemaTicketer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Duration,Description,Rating,Director,Cast,PosterUrl,PremiereDate")] Movie movie)
         {
+            // TODO adding screenings directly while adding movie (view)
             if (ModelState.IsValid)
             {
                 _context.Add(movie);
@@ -76,7 +77,10 @@ namespace CinemaTicketer.Controllers
                 return NotFound();
             }
 
-            var movie = await _context.Movies.FindAsync(id);
+            // retrieve movie with corresponding screenings
+            var movie = await _context.Movies
+                .Include(m => m.Screenings)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (movie == null)
             {
                 return NotFound();

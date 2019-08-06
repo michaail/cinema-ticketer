@@ -19,6 +19,7 @@ namespace CinemaTicketer.Controllers
             this._dbContext = dbContext;
         }
 
+
         [AllowAnonymous]
         public async Task<IActionResult> Index()
         {

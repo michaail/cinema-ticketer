@@ -78,15 +78,6 @@
                 <th>
                     Screenings
                 </th>
-                @*<th>
-                    @Html.DisplayNameFor(model => model.Duration)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Rating)
-                </th>*@
                 <th></th>
             </tr>
         </thead>
@@ -97,15 +88,6 @@
                     <td>
                         @Html.DisplayFor(modelItem => screening.Date)
                     </td>
-                    @*<td>
-                        @Html.DisplayFor(modelItem => item.Duration)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Rating)
-                    </td>*@
                     <td>
                         <a asp-controller="Screenings" asp-action="Edit" asp-route-id="@screening.Id">Edit</a> |
                         <a asp-controller="Screenings" asp-action="Delete" asp-route-id="@screening.Id">Delete</a> |
