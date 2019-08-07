@@ -44,10 +44,11 @@ namespace CinemaTicketer.Controllers
         }
 
         // GET: Reservations/Create
-        public IActionResult Create(int? screeningId)
+        public async Task<IActionResult> Create(int? screeningId)
         {
+            var screening = await _context.Screenings.FindAsync(screeningId);
 
-            return View(screeningId);
+            return View(screening);
         }
 
         // POST: Reservations/Create
