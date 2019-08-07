@@ -44,9 +44,10 @@ namespace CinemaTicketer.Controllers
         }
 
         // GET: Reservations/Create
-        public IActionResult Create()
+        public IActionResult Create(int? screeningId)
         {
-            return View();
+
+            return View(screeningId);
         }
 
         // POST: Reservations/Create

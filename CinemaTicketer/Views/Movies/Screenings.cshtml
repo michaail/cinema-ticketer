@@ -78,12 +78,13 @@
             {
                 <tr>
                     <td>
-                        @Html.DisplayFor(modelItem => screening.Date)
+                    @{
+                        string date = screening.Date.ToString("dd-MM-yyyy HH:mm");
+                    }
+                    @Html.DisplayFor(modelItem => date)
                     </td>
                     <td>
-                        <a asp-controller="Screenings" asp-action="Edit" asp-route-id="@screening.Id">Edit</a> |
-                        <a asp-controller="Screenings" asp-action="Delete" asp-route-id="@screening.Id">Delete</a> |
-                        <a asp-controller="Screenings" asp-action="Create" asp-route-id="@Model.Id">Add screening</a>
+                        <a asp-controller="Reservations" asp-action="Create" asp-route-id="@screening.Id" >Book</a>
                     </td>
                 </tr>
             }

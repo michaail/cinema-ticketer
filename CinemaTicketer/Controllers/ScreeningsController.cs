@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CinemaTicketer.Data;
 using CinemaTicketer.Models;
+using System.Security.Claims;
 
 namespace CinemaTicketer.Controllers
 {
@@ -47,6 +48,8 @@ namespace CinemaTicketer.Controllers
         // GET: Screenings/Create
         public IActionResult Create(int? id)
         {
+            //var i = User.Identity as ClaimsIdentity;
+            ////var userId = i.Claims.FirstOrDefault(c => c.Type == idClaimType)?.Value;
             ViewBag.Id = id;
             return View();
         }
